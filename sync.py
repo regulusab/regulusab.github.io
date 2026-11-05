@@ -41,9 +41,11 @@ def main():
     json.dump(sites, open(sj, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     # 更新 nav.js 內嵌清單
     nj = os.path.join(REPO, "nav", "nav.js")
-    lst = json.dumps([{"key": s["key"], "name": s["name"], "url": s["url"]} for s in sites], ensure_ascii=False)
+    lst = json.dumps([{"key": s["key"], "name": s["name"], "url": s["url"]} for s in sites])
     src = open(nj, encoding="utf-8").read()
-    open(nj, "w", encoding="utf-8").write(re.sub(r"var SITES=.*?;\n", lambda m: f"var SITES={lst};\n", src, count=1, flags=re.S))
+    src = re.sub(r"var SITES=.*?;\n", lambda m: f"var SITES={lst};\n", src, count=1, flags=re.S)
+    # nav.js 保持純 ASCII，避免非 UTF-8 網頁出現亂碼
+    open(nj, "w", encoding="ascii").write("".join(c if ord(c) < 128 else "\\u%04x" % ord(c) for c in src))
     git = lambda *a: subprocess.run(["git", "-C", REPO, *a], check=True, capture_output=True, text=True).stdout
     git("add", "-A", "sites.json", "icons", "nav/nav.js")
     if not git("status", "--porcelain", "sites.json", "icons", "nav"):
