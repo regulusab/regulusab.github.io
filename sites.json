@@ -3,63 +3,63 @@
     "key": "bazi-site",
     "name": "八字論命",
     "url": "https://regulusab.github.io/bazi-site/",
-    "intro": "八字論命的命理參考網站。",
-    "icon": "icons/bazi-site.svg",
+    "intro": "排命盤、完整論命、流年、合婚、擇日、詳細命盤下載，另有東經70度換日線的全球八字試算",
+    "icon": "icons/bazi-site.png",
     "color": "#8b2e2e",
-    "placeholder": true
+    "placeholder": false
   },
   {
     "key": "yizhu",
     "name": "一柱論命",
     "url": "https://regulusab.github.io/yizhu/",
-    "intro": "輸入生日求日柱，查看六十甲子日柱論斷。",
-    "icon": "icons/yizhu.svg",
+    "intro": "輸入生日求日柱，查看六十甲子日柱論斷與《三命通會》對照。",
+    "icon": "icons/yizhu.png",
     "color": "#2f5d50",
-    "placeholder": true
+    "placeholder": false
   },
   {
     "key": "shishen",
-    "name": "十神論命",
+    "name": "八字十神論命",
     "url": "https://regulusab.github.io/shishen/",
-    "intro": "以八字十神論命的參考網站。",
-    "icon": "icons/shishen.svg",
+    "intro": "輸入八字，依十神論斷命理，並可排出大運與流年",
+    "icon": "icons/shishen.png",
     "color": "#3a4f7a",
-    "placeholder": true
+    "placeholder": false
   },
   {
     "key": "bazi-health",
-    "name": "八字健康",
+    "name": "八字健康疾病參考",
     "url": "https://regulusab.github.io/bazi-health/",
-    "intro": "八字健康疾病參考網站。",
-    "icon": "icons/bazi-health.svg",
+    "intro": "依干支五行，查閱八字與健康疾病的參考對應",
+    "icon": "icons/bazi-health.png",
     "color": "#6b5a2e",
-    "placeholder": true
+    "placeholder": false
   },
   {
     "key": "heluo-lishu",
-    "name": "河洛理數",
+    "name": "河洛理數批命",
     "url": "https://regulusab.github.io/heluo-lishu/",
-    "intro": "河洛理數批命網站。",
-    "icon": "icons/heluo-lishu.svg",
+    "intro": "輸入生辰，排出先天卦、後天卦與元堂，推算大運、流年，可切換不同派別，結果能存檔並下載 Word／PDF。",
+    "icon": "icons/heluo-lishu.png",
     "color": "#5b3a6b",
-    "placeholder": true
+    "placeholder": false
   },
   {
     "key": "tieban",
-    "name": "鐵板神數",
+    "name": "鐵板神數批命",
     "url": "https://regulusab.github.io/tieban/",
-    "intro": "鐵板神數批命網站。",
-    "icon": "icons/tieban.svg",
+    "intro": "輸入生辰排出八字、大運與鐵板神數八刻條文，並公開取數計算過程。",
+    "icon": "icons/tieban.png",
     "color": "#2e4a5c",
-    "placeholder": true
+    "placeholder": false
   },
   {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
     "intro": "鐵板神數取數技術的公開研究頁（外部網站）。",
-    "icon": "icons/ironplate.svg",
+    "icon": "icons/ironplate.png",
     "color": "#7a4b2e",
-    "placeholder": true
+    "placeholder": false
   }
 ]
