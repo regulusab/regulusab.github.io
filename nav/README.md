@@ -19,3 +19,15 @@
 ```
 
 > 注意：若網站本身有 `position: fixed` 的頂部列，請確認層級（導覽列 z-index 極高）是否符合需求。
+
+## 頂部固定列的位移：`--rg-nav-h`
+
+導覽列載入後，會在 `<html>` 上設定 CSS 變數 `--rg-nav-h`，值為導覽列實際高度（px）。在有瀏海的 iPhone 上會包含安全區域，可能約 47px 而非 40px；畫面尺寸、轉向改變時會自動更新，列印時為 `0px`。
+
+若網站本身有 `position: sticky` 或 `position: fixed` 的頂部列，請不要寫死 40px，改用：
+
+```css
+.your-top-bar { top: var(--rg-nav-h, 40px); }
+```
+
+（未載入 nav.js 時，可改用 `var(--rg-nav-h, 0px)` 作為預設值。）
