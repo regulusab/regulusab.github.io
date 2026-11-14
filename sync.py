@@ -5,7 +5,7 @@ info.txt 格式：可用「name: / 名稱：」「intro: / 簡介：」「url: /
 import json, os, re, shutil, subprocess, sys
 REPO = os.path.dirname(os.path.abspath(__file__))
 INBOX = "/workspace/portal-inbox"
-COLORS = {"ziwei": "#5b3a8c", "mangpai": "#2f5d50"}
+COLORS = {"ziwei": "#5b3a8c", "mangpai": "#4a6b2a"}
 KEYS = {"name": ("name", "名稱", "名字", "站名"), "intro": ("intro", "description", "desc", "簡介", "介紹", "說明"), "url": ("url", "網址", "link", "連結")}
 
 def parse(path):
@@ -28,6 +28,11 @@ def main():
     known = {s["key"] for s in sites}
     for k in sorted(os.listdir(INBOX)):
         if k in known or not os.path.isfile(os.path.join(INBOX, k, "info.txt")): continue
+        u = parse(os.path.join(INBOX, k, "info.txt")).get("url", "")
+        try:
+            import urllib.request; ok = urllib.request.urlopen(u, timeout=15).status == 200
+        except Exception: ok = False
+        if not ok: print(f"[{k}] 網址尚未上線，暫不加入：{u}"); continue
         new = {"key": k, "name": k, "intro": "", "url": "", "color": COLORS.get(k, "#555555")}
         idx = next((i for i, s in enumerate(sites) if not s.get("url", "").startswith("https://regulusab.github.io/")), len(sites))
         sites.insert(idx, new); print(f"[{k}] 新增網站")
