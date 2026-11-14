@@ -5,6 +5,7 @@ info.txt 格式：可用「name: / 名稱：」「intro: / 簡介：」「url: /
 import json, os, re, shutil, subprocess, sys
 REPO = os.path.dirname(os.path.abspath(__file__))
 INBOX = "/workspace/portal-inbox"
+COLORS = {"ziwei": "#5b3a8c", "mangpai": "#2f5d50"}
 KEYS = {"name": ("name", "名稱", "名字", "站名"), "intro": ("intro", "description", "desc", "簡介", "介紹", "說明"), "url": ("url", "網址", "link", "連結")}
 
 def parse(path):
@@ -23,6 +24,13 @@ def parse(path):
 def main():
     sj = os.path.join(REPO, "sites.json")
     sites = json.load(open(sj, encoding="utf-8"))
+    # 收件匣裡有新資料夾（含 info.txt）就自動加入，排在外部網站之前
+    known = {s["key"] for s in sites}
+    for k in sorted(os.listdir(INBOX)):
+        if k in known or not os.path.isfile(os.path.join(INBOX, k, "info.txt")): continue
+        new = {"key": k, "name": k, "intro": "", "url": "", "color": COLORS.get(k, "#555555")}
+        idx = next((i for i, s in enumerate(sites) if not s.get("url", "").startswith("https://regulusab.github.io/")), len(sites))
+        sites.insert(idx, new); print(f"[{k}] 新增網站")
     for s in sites:
         d = os.path.join(INBOX, s["key"])
         info, icon = os.path.join(d, "info.txt"), os.path.join(d, "icon.png")
