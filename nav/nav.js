@@ -5,7 +5,11 @@ var HOME="https://regulusab.github.io/";
 var SITES=[{"key": "bazi-site", "name": "\u516b\u5b57\u8ad6\u547d", "url": "https://regulusab.github.io/bazi-site/"}, {"key": "yizhu", "name": "\u4e00\u67f1\u8ad6\u547d", "url": "https://regulusab.github.io/yizhu/"}, {"key": "shishen", "name": "\u516b\u5b57\u5341\u795e\u8ad6\u547d", "url": "https://regulusab.github.io/shishen/"}, {"key": "bazi-health", "name": "\u516b\u5b57\u5065\u5eb7\u75be\u75c5\u53c3\u8003", "url": "https://regulusab.github.io/bazi-health/"}, {"key": "heluo-lishu", "name": "\u6cb3\u6d1b\u7406\u6578\u6279\u547d", "url": "https://regulusab.github.io/heluo-lishu/"}, {"key": "tieban", "name": "\u9435\u677f\u795e\u6578\u6279\u547d", "url": "https://regulusab.github.io/tieban/"}, {"key": "ziwei", "name": "\u7d2b\u5fae\u6597\u6578\u8ad6\u547d", "url": "https://regulusab.github.io/ziwei/"}, {"key": "mangpai", "name": "\u76f2\u6d3e\u516b\u5b57\u8ad6\u547d", "url": "https://regulusab.github.io/mangpai/"}, {"key": "ironplate", "name": "\u9435\u677f\u53d6\u6578\u7814\u7a76\u7ad9", "url": "https://ironplate-methods-research.pages.dev"}];
 function norm(u){try{var x=new URL(u,location.href);return (x.host+x.pathname).replace(/\/+$/,"")+"/";}catch(e){return u;}}
 var here=norm(location.href),cur=null;
-SITES.forEach(function(s){var b=norm(s.url);if(here.indexOf(b)===0&&(!cur||b.length>norm(cur.url).length))cur=s;});
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+function pickCur(list){var c=null;list.forEach(function(s){var b=norm(s.url);if(here.indexOf(b)===0&&(!c||b.length>norm(c.url).length))c=s;});return c;}
+function itemsHtml(list){return list.map(function(s){var on=cur&&cur.key===s.key;
+  return '<a part="item" class="it'+(on?' on':'')+'" href="'+esc(s.url)+'"'+(on?' aria-current="page"':'')+'>'+esc(s.name)+(on?' <small>\uff08\u672c\u7ad9\uff09</small>':'')+'</a>';}).join("");}
+cur=pickCur(SITES);
 function init(){
  if(document.getElementById("rg-nav-host"))return;
  var host=document.createElement("div");host.id="rg-nav-host";
@@ -13,8 +17,7 @@ function init(){
  var ps=document.createElement("style");ps.textContent="@media print{#rg-nav-host{display:none!important}}";
  document.head.appendChild(ps);
  var root=host.attachShadow?host.attachShadow({mode:"open"}):host;
- var items=SITES.map(function(s){var on=cur&&cur.key===s.key;
-  return '<a part="item" class="it'+(on?' on':'')+'" href="'+s.url+'"'+(on?' aria-current="page"':'')+'>'+s.name+(on?' <small>\uff08\u672c\u7ad9\uff09</small>':'')+'</a>';}).join("");
+ var items=itemsHtml(SITES);
  root.innerHTML='<style>:host{all:initial}*{box-sizing:border-box}'+
  '.bar{font:14px/1.4 "Noto Serif TC","Songti TC","PingFang TC","Microsoft JhengHei",serif;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:40px;height:calc(40px + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) calc(12px + env(safe-area-inset-right,0px)) 0 calc(12px + env(safe-area-inset-left,0px));background:#2b2320;color:#f3e7c9;border-bottom:2px solid #a8823c;-webkit-text-size-adjust:100%}'+
  'a{color:inherit;text-decoration:none}.home{white-space:nowrap;padding:6px 4px}.home:hover,.btn:hover{color:#fff}'+
@@ -37,6 +40,12 @@ function init(){
  if(window.ResizeObserver)new ResizeObserver(setH).observe(host);
  if(pm){if(pm.addEventListener)pm.addEventListener("change",setH);else if(pm.addListener)pm.addListener(setH);}
  window.addEventListener("beforeprint",function(){de.style.setProperty("--rg-nav-h","0px");});window.addEventListener("afterprint",setH);
+ /* refresh site list from sites.json (embedded list above is the instant fallback) */
+ if(window.fetch){try{fetch(HOME+"sites.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+  var list=(Array.isArray(d)?d:(d&&Array.isArray(d.sites)?d.sites:[])).filter(function(x){return x&&typeof x.key==="string"&&typeof x.name==="string"&&typeof x.url==="string"&&/^https?:\/\//.test(x.url);})
+   .map(function(x){return {key:x.key,name:x.name,url:x.url};});
+  if(!list.length)return;cur=pickCur(list);menu.innerHTML=itemsHtml(list);var cs=root.querySelector(".cur");if(cs)cs.textContent=cur?cur.name:"";
+ })["catch"](function(){});}catch(e){}}
 }
 if(document.body)init();else document.addEventListener("DOMContentLoaded",init);
 })();

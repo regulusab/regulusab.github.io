@@ -11,6 +11,7 @@
 - 以 `position: sticky` 置頂（插入於 `<body>` 最前），不會遮住內容，不需另加 padding。
 - 列印時自動隱藏（`@media print`）。
 - 手機友善；重複載入只會插入一次。
+- 站點清單：先用 nav.js 內嵌清單立即顯示，載入後再讀取 `https://regulusab.github.io/sites.json`（不快取）更新「網站」選單與本站標示；讀取失敗時沿用內嵌清單。
 
 ## 不使用 JavaScript 的備用寫法
 
