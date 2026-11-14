@@ -63,15 +63,6 @@
     "placeholder": false
   },
   {
-    "key": "mangpai",
-    "name": "盲派八字論命",
-    "intro": "盲派八字排盤與命書：賓主體用、做功、象法、應期，依範本格式產生命書並可下載 PDF、Word",
-    "url": "https://regulusab.github.io/mangpai/",
-    "color": "#2f5d50",
-    "icon": "icons/mangpai.png",
-    "placeholder": false
-  },
-  {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
