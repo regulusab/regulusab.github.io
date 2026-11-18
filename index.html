@@ -23,7 +23,9 @@ a.card:hover,a.card:focus-visible{transform:translateY(-2px);box-shadow:0 8px 20
 a.card img{width:60px;height:60px;flex:none;border-radius:50%}
 .t{font-size:19px;font-weight:700;letter-spacing:.08em;margin:0 0 4px}
 .d{font-size:14px;color:#6b5a48;margin:0;line-height:1.55}
-.ext{font-size:11px;color:#a8823c;border:1px solid #d9c391;border-radius:3px;padding:0 4px;margin-left:6px;vertical-align:middle;font-weight:normal;letter-spacing:0}
+.ext,.beta{font-size:11px;border:1px solid;border-radius:3px;padding:0 4px;margin-left:6px;vertical-align:middle;font-weight:normal;letter-spacing:0}
+.ext{color:#a8823c;border-color:#d9c391}
+.beta{color:#b3261e;border-color:#d4a19c;background:#fdecea}
 footer{text-align:center;color:#9a8670;font-size:12px;padding:0 16px 30px}
 </style></head><body>
 <header><h1>命理網站總入口</h1><p class="sub">八字・河洛・鐵板　諸術一覽</p><div class="rule"></div></header>
@@ -33,6 +35,7 @@ footer{text-align:center;color:#9a8670;font-size:12px;padding:0 16px 30px}
 fetch("sites.json",{cache:"no-cache"}).then(r=>r.json()).then(list=>{
  const g=document.getElementById("grid"),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
  g.innerHTML=list.map(s=>{const ext=!/^https:\/\/regulusab\.github\.io\//.test(s.url);
-  return `<a class="card" href="${esc(s.url)}"${ext?' target="_blank" rel="noopener"':''}><img src="${esc(s.icon)}" alt="" loading="lazy"><div><p class="t">${esc(s.name)}${ext?'<span class="ext">外部</span>':''}</p><p class="d">${esc(s.intro)}</p></div></a>`}).join("");
+  const beta=/測試版/.test(s.name);const title=s.name.replace(/[（(]測試版[）)]/g,"").trim();
+  return `<a class="card" href="${esc(s.url)}"${ext?' target="_blank" rel="noopener"':''}><img src="${esc(s.icon)}" alt="" loading="lazy"><div><p class="t">${esc(title)}${beta?'<span class="beta">測試版</span>':''}${ext?'<span class="ext">外部</span>':''}</p><p class="d">${esc(s.intro)}</p></div></a>`}).join("");
 }).catch(()=>{document.getElementById("grid").textContent="載入網站清單失敗，請重新整理。"});
 </script></body></html>
