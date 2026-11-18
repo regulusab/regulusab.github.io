@@ -72,6 +72,15 @@
     "placeholder": false
   },
   {
+    "key": "shengming-test",
+    "name": "生命之眼報告（測試版）",
+    "intro": "跨系統命理報告的測試頁，內容仍在調整，歡迎回饋",
+    "url": "https://regulusab.github.io/shengming-test/",
+    "color": "#1f4e9a",
+    "icon": "icons/shengming-test.png",
+    "placeholder": false
+  },
+  {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
