@@ -5,7 +5,7 @@ info.txt 格式：可用「name: / 名稱：」「intro: / 簡介：」「url: /
 import json, os, re, shutil, subprocess, sys
 REPO = os.path.dirname(os.path.abspath(__file__))
 INBOX = "/workspace/portal-inbox"
-COLORS = {"ziwei": "#5b3a8c", "mangpai": "#4a6b2a", "shengming-test": "#1f4e9a"}
+COLORS = {"ziwei": "#5b3a8c", "mangpai": "#4a6b2a", "shengming-test": "#1f4e9a", "liangxiangrun": "#6b3a1f"}
 KEYS = {"name": ("name", "名稱", "名字", "站名"), "intro": ("intro", "description", "desc", "簡介", "介紹", "說明"), "url": ("url", "網址", "link", "連結")}
 
 def parse(path):
