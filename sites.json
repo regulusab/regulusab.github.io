@@ -81,6 +81,15 @@
     "placeholder": false
   },
   {
+    "key": "liangxiangrun",
+    "name": "梁湘潤論八字",
+    "intro": "依梁湘潤論八字法整理：排盤、論命次第、調候與格局順逆、金不換大運、歲運刑沖合會與流月，附論法、生平著作與出處",
+    "url": "https://regulusab.github.io/liangxiangrun/",
+    "color": "#555555",
+    "icon": "icons/liangxiangrun.png",
+    "placeholder": false
+  },
+  {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
