@@ -99,6 +99,15 @@
     "placeholder": false
   },
   {
+    "key": "xieji",
+    "name": "協紀擇日",
+    "intro": "天干地支・陰陽五行擇日選時：萬年曆日頁、吉時表、月曆、區間擇吉（地方平時、當地節氣與農曆）",
+    "url": "https://regulusab.github.io/xieji/",
+    "color": "#2e5a5e",
+    "icon": "icons/xieji.png",
+    "placeholder": false
+  },
+  {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
