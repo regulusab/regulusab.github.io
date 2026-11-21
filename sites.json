@@ -90,6 +90,15 @@
     "placeholder": false
   },
   {
+    "key": "liuyao",
+    "name": "六爻文王卦占卜",
+    "intro": "三錢搖卦、時間或數字起卦，納甲裝卦（世應、六親、六獸、伏神、旬空），依《增刪卜易》《卜筮正宗》等古籍逐條解卦並附原文出處",
+    "url": "https://regulusab.github.io/liuyao/",
+    "color": "#7a5a1e",
+    "icon": "icons/liuyao.png",
+    "placeholder": false
+  },
+  {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
