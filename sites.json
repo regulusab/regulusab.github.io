@@ -108,6 +108,15 @@
     "placeholder": false
   },
   {
+    "key": "zixi",
+    "name": "八字論子息",
+    "intro": "輸入生辰，依長生沐浴歌與《子平真詮》《淵海子平》《三命通會》等古籍，逐條列出子女數目、男女與大運流年提示並附原文出處",
+    "url": "https://regulusab.github.io/zixi/",
+    "color": "#8a3d5c",
+    "icon": "icons/zixi.png",
+    "placeholder": false
+  },
+  {
     "key": "ironplate",
     "name": "鐵板取數研究站",
     "url": "https://ironplate-methods-research.pages.dev",
